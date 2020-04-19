@@ -1,16 +1,25 @@
 package au.master.foundation.mc.master_bank.domain;
 
+import javax.persistence.*;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Logger;
 
 public class Account {
 
     Scanner scan = new Scanner(System.in);
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String agency;
     private Double balance;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "customer_account",
+            joinColumns = @JoinColumn(name = "account_number"),
+            inverseJoinColumns = @JoinColumn(name = "customer_id")
+    )
     private List<Customer> customers;
 
     public Account(Integer id, String agency, Double balance, List<Customer> customers) {

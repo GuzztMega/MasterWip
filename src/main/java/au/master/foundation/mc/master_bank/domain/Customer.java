@@ -1,5 +1,7 @@
 package au.master.foundation.mc.master_bank.domain;
 
+import javax.persistence.CascadeType;
+import javax.persistence.ManyToMany;
 import java.util.List;
 
 public class Customer {
@@ -8,14 +10,17 @@ public class Customer {
     private String fullName;
     private String email;
     private String phone;
+
+    @ManyToMany(cascade= CascadeType.ALL)
     private List<Account> accounts;
 
-    public Customer(Integer id, String fullName, String email, List<Account> accounts, String phone) {
+    public Customer(){}
+
+    public Customer(Integer id, String fullName, String email, String phone) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.phone = phone;
-        this.accounts = accounts;
     }
 
     public Integer getId() {
