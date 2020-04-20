@@ -1,12 +1,18 @@
 package au.master.foundation.mc.master_bank.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Scanner;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")
 public class Account {
 
-    Scanner scan = new Scanner(System.in);
+    //Scanner scan = new Scanner(System.in);
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,6 +20,7 @@ public class Account {
     private String agency;
     private Double balance;
 
+    @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "customer_account",
@@ -22,24 +29,25 @@ public class Account {
     )
     private List<Customer> customers;
 
-    public Account(Integer id, String agency, Double balance, List<Customer> customers) {
+    public Account(){}
+
+    public Account(Integer id, String agency, Double balance) {
         this.id = id;
         this.agency = agency;
         this.balance = balance;
-        this.customers = customers;
     }
 
     public void transfer(Integer accountId, String agency, Double value){
-        if(balance <= 0){
-            System.out.println("Insufficient funds!");
-        } else {
-            System.out.print("Enter the Account Number (ID): ");
-            accountId = scan.nextInt();
-            System.out.print("Enter the Agency Number: ");
-            agency = scan.next();
-            System.out.print("Amount to be transferred: ");
-            value = scan.nextDouble();
-        }
+//        if(balance <= 0){
+//            System.out.println("Insufficient funds!");
+//        } else {
+//            System.out.print("Enter the Account Number (ID): ");
+//            accountId = scan.nextInt();
+//            System.out.print("Enter the Agency Number: ");
+//            agency = scan.next();
+//            System.out.print("Amount to be transferred: ");
+//            value = scan.nextDouble();
+//        }
     }
 
     public void deposit(Double value){

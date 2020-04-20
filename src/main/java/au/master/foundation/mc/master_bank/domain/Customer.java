@@ -1,17 +1,19 @@
 package au.master.foundation.mc.master_bank.domain;
 
-import javax.persistence.CascadeType;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Customer {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String fullName;
     private String email;
     private String phone;
 
-    @ManyToMany(cascade= CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Account> accounts;
 
     public Customer(){}

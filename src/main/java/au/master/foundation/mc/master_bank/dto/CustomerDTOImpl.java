@@ -4,20 +4,20 @@ import au.master.foundation.mc.master_bank.domain.Account;
 import au.master.foundation.mc.master_bank.domain.AccountSavings;
 import au.master.foundation.mc.master_bank.domain.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+@Component
 public class CustomerDTOImpl implements CustomerDTO {
 
     private static List<Customer> customers = new ArrayList<>();
-
     static int counter = 0;
 
     static {
-        customers.add(new Customer(++counter, "Augusto Longo",
-                "guzzdev2020@gmail.com", "9999-9999"));
+        customers.add(new Customer(null, "Augusto Longo","guzzdev2020@gmail.com", "9999-9999"));
     }
 
     @Override
