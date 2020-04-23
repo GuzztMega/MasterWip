@@ -22,7 +22,7 @@ public class CustomerController {
     private CustomerService service;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Customer> insert(@Valid @RequestBody CustomerNewDTO newObj){
+    public ResponseEntity<Customer> insertCustomer(@Valid @RequestBody CustomerNewDTO newObj){
         Customer obj = service.fromDTO(newObj);
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -43,5 +43,18 @@ public class CustomerController {
         return ResponseEntity.ok().body(customer);
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Void> updateCustomer(@RequestBody CustomerNewDTO newObj, @PathVariable Integer id){
+        Customer obj = service.fromDTO(newObj);
+        obj.setId(id);
+        obj = service.update(obj);
+        return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> deleteCustomer(@PathVariable Integer id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }
