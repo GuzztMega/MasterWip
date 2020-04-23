@@ -16,8 +16,8 @@ public class DBService {
 
     public void instantiateDataBase() throws ParseException {
 
-        Customer cust1 = new Customer(null, "Augusto Longo", "guzzdev2020@gmail.com", "9999-9999");
-        Customer cust2 = new Customer(null, "Johny Bravo", "jbravo@gmail.com", "6666-9999");
+        Customer cust1 = new Customer(null, "Augusto Longo", "guzzdev2020@gmail.com", "9999-0123");
+        Customer cust2 = new Customer(null, "Johny Bravo", "jbravo@gmail.com", "9999-8765");
         customerRepository.saveAll(Arrays.asList(cust1, cust2));
 
     }
