@@ -1,7 +1,6 @@
 package au.master.foundation.mc.master_bank.controllers;
 
 import au.master.foundation.mc.master_bank.domain.Customer;
-import au.master.foundation.mc.master_bank.dto.CustomerDTO;
 import au.master.foundation.mc.master_bank.dto.CustomerNewDTO;
 import au.master.foundation.mc.master_bank.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/customers")

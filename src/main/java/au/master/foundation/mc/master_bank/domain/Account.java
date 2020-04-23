@@ -1,5 +1,6 @@
 package au.master.foundation.mc.master_bank.domain;
 
+import au.master.foundation.mc.master_bank.domain.enums.AccountType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
@@ -8,10 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
+//@Inheritance(strategy = InheritanceType.JOINED)
+//@JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")
-public abstract class Account {
+public class Account {
 
     //Scanner scan = new Scanner(System.in);
 
@@ -20,6 +22,7 @@ public abstract class Account {
     private Integer id;
     private String agency;
     private Double balance;
+    private Integer type;
 
     @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL)
@@ -32,23 +35,14 @@ public abstract class Account {
 
     public Account(){}
 
-    public Account(Integer id, String agency, Double balance) {
+    public Account(Integer id, String agency, Double balance, AccountType type) {
         this.id = id;
         this.agency = agency;
         this.balance = balance;
+        this.type = (type==null) ? null : type.getCod();
     }
 
     public void transfer(Integer accountId, String agency, Double value){
-//        if(balance <= 0){
-//            System.out.println("Insufficient funds!");
-//        } else {
-//            System.out.print("Enter the Account Number (ID): ");
-//            accountId = scan.nextInt();
-//            System.out.print("Enter the Agency Number: ");
-//            agency = scan.next();
-//            System.out.print("Amount to be transferred: ");
-//            value = scan.nextDouble();
-//        }
     }
 
     public void deposit(Double value){
@@ -86,5 +80,11 @@ public abstract class Account {
 
     public void setCustomer(List<Customer> customers) {
         this.customers = customers;
+    }
+
+    public void setType(AccountType type){ this.type = type.getCod(); }
+
+    public AccountType getType() throws IllegalAccessException{
+        return AccountType.toEnum(type);
     }
 }
