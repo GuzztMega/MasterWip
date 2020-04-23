@@ -1,6 +1,7 @@
 package au.master.foundation.mc.master_bank.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,8 +14,8 @@ public class Customer {
     private String email;
     private String phone;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Account> accounts;
+    @ManyToMany(mappedBy = "customers")
+    private List<Account> accounts = new ArrayList<>();
 
     public Customer(){}
 

@@ -4,13 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")
-public class Account {
+public abstract class Account {
 
     //Scanner scan = new Scanner(System.in);
 
@@ -23,11 +24,11 @@ public class Account {
     @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name = "customer_account",
+            name = "CUSTOMER_ACCOUNT",
             joinColumns = @JoinColumn(name = "account_number"),
             inverseJoinColumns = @JoinColumn(name = "customer_id")
     )
-    private List<Customer> customers;
+    private List<Customer> customers = new ArrayList<>();
 
     public Account(){}
 
