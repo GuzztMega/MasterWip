@@ -27,9 +27,9 @@ public class DBService {
         Customer cust2 = new Customer(null, "Johny Bravo", "jbravo@gmail.com", "9999-8765");
         customerRepository.saveAll(Arrays.asList(cust1, cust2));
 
-        Account acc1 = new Account(null, "5800-5", 500.00, AccountType.CURRENT);
-
-        accountRepository.saveAll(Arrays.asList(acc1));
+        Account acc1 = new Account(null, "5800-5", 589.20, AccountType.CURRENT);
+        Account acc2 = new Account(null, "8123-1", 49000.00, AccountType.SAVINGS);
+        accountRepository.saveAll(Arrays.asList(acc1, acc2));
 
     }
 }

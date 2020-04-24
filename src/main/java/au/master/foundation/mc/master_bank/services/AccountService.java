@@ -1,7 +1,8 @@
 package au.master.foundation.mc.master_bank.services;
 
 import au.master.foundation.mc.master_bank.domain.Account;
-import au.master.foundation.mc.master_bank.dto.CustomerNewDTO;
+import au.master.foundation.mc.master_bank.domain.enums.AccountType;
+import au.master.foundation.mc.master_bank.dto.AccountNewDTO;
 import au.master.foundation.mc.master_bank.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -32,9 +33,9 @@ public class AccountService {
         return account;
     }
 
-    public Account update(Account obj){
+    public Account update(Account obj) throws IllegalAccessException {
         Account newObj = getAccount(obj.getId());
-        //updateData(newObj, obj);
+        updateData(newObj, obj);
         return repo.save(newObj);
     }
 
@@ -47,13 +48,12 @@ public class AccountService {
         }
     }
 
-//    public Account fromDTO(CustomerNewDTO objDto){
-//        return new Account(null, objDto.getFullName(), objDto.getEmail(), objDto.getPhone());
-//    }
-//
-//    public void updateData(Account newObj, Account obj){
-//        newObj.setFullName(obj.getFullName());
-//        newObj.setPhone(obj.getPhone());
-//        newObj.setEmail(obj.getEmail());
-//    }
+    public Account fromDTO(AccountNewDTO objDto){
+        return new Account(null, objDto.newAgency(),objDto.getBalance(), AccountType.toEnum(objDto.getType()));
+    }
+
+    public void updateData(Account newObj, Account obj) throws IllegalAccessException {
+        newObj.setBalance(obj.getBalance());
+        newObj.setType(obj.getType());
+    }
 }

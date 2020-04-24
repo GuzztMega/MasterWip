@@ -7,15 +7,15 @@ import javax.validation.constraints.NotEmpty;
 
 public class CustomerNewDTO {
 
-    @NotEmpty(message = "Preenchimento obrigatório")
-    @Length(min = 5, max = 120, message = "O nome deve ter entre 5 e 120 caracteres")
+    @NotEmpty(message = "Required field")
+    @Length(min = 5, max = 120, message = "The name must be between 5 and 120 characters long")
     private String fullName;
 
-    @NotEmpty(message = "Preenchimento obrigatório")
-    @Email(message = "Insira um email válido")
+    @NotEmpty(message = "Required field")
+    @Email(message = "Invalid Email")
     private String email;
 
-    @NotEmpty(message = "Preenchimento obrigatório")
+    @NotEmpty(message = "Required field")
     private String phone;
 
     private Integer accountId;
