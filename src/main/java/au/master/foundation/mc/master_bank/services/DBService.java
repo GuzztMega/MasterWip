@@ -25,11 +25,21 @@ public class DBService {
 
         Customer cust1 = new Customer(null, "Augusto Longo", "guzzdev2020@gmail.com", "9999-0123");
         Customer cust2 = new Customer(null, "Johny Bravo", "jbravo@gmail.com", "9999-8765");
-        customerRepository.saveAll(Arrays.asList(cust1, cust2));
 
         Account acc1 = new Account(null, "5800-5", 589.20, AccountType.CURRENT);
         Account acc2 = new Account(null, "8123-1", 49000.00, AccountType.SAVINGS);
+
+        customerRepository.saveAll(Arrays.asList(cust1, cust2));
         accountRepository.saveAll(Arrays.asList(acc1, acc2));
+
+
+//        CONSERTAR RELAÇÃO CLIENTE-CONTA
+//        cust1.getAccounts().addAll(Arrays.asList(acc1));
+//        cust2.getAccounts().addAll(Arrays.asList(acc1, acc2));
+//        acc1.getCustomers().addAll(Arrays.asList(cust1,cust2));
+//        acc2.getCustomers().addAll(Arrays.asList(cust2));
+
+
 
     }
 }

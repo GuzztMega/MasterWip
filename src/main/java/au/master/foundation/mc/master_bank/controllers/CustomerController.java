@@ -1,7 +1,10 @@
 package au.master.foundation.mc.master_bank.controllers;
 
+import au.master.foundation.mc.master_bank.domain.Account;
 import au.master.foundation.mc.master_bank.domain.Customer;
+import au.master.foundation.mc.master_bank.dto.AccountNewDTO;
 import au.master.foundation.mc.master_bank.dto.CustomerNewDTO;
+import au.master.foundation.mc.master_bank.services.AccountService;
 import au.master.foundation.mc.master_bank.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +21,9 @@ public class CustomerController {
 
     @Autowired
     private CustomerService service;
+
+    @Autowired
+    private AccountService accountService;
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Customer> insertCustomer(@Valid @RequestBody CustomerNewDTO newObj){
@@ -53,6 +59,14 @@ public class CustomerController {
     public ResponseEntity<Void> deleteCustomer(@PathVariable Integer id){
         service.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(value = "/{id}/accounts", method = RequestMethod.POST)
+    public ResponseEntity<Account> createAccount(@Valid @PathVariable Integer id, @RequestBody AccountNewDTO newObj){
+        Customer customer = service.getCustomer(id);
+        Account obj = service.createAccount(customer.getId(), newObj);
+        obj = accountService.insert(obj);
+        return ResponseEntity.ok().body(obj);
     }
 
 }
