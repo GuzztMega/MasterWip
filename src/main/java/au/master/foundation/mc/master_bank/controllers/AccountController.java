@@ -1,8 +1,12 @@
 package au.master.foundation.mc.master_bank.controllers;
 
 import au.master.foundation.mc.master_bank.domain.Account;
+import au.master.foundation.mc.master_bank.domain.Transfer;
 import au.master.foundation.mc.master_bank.dto.AccountNewDTO;
 import au.master.foundation.mc.master_bank.services.AccountService;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +50,13 @@ public class AccountController {
         Account obj = service.fromDTO(newObj);
         obj.setId(id);
         obj = service.update(obj);
+        return ResponseEntity.noContent().build();
+    }
+
+    @JsonFormat
+    @RequestMapping(value = "/transferFund", method = RequestMethod.PUT, consumes = "application/json")
+    public ResponseEntity<Void> transferFund(@RequestBody Transfer transfer){
+        service.transferFund(transfer);
         return ResponseEntity.noContent().build();
     }
 

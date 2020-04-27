@@ -42,14 +42,6 @@ public class Account {
         this.type = (type==null) ? null : type.getCod();
     }
 
-    public void transfer(Integer accountId, String agency, Double value){
-    }
-
-    public void deposit(Double value){
-    }
-
-    public void withdraw(Long value){}
-
     public Integer getId() {
         return id;
     }
