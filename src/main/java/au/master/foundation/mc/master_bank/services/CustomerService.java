@@ -4,6 +4,7 @@ import au.master.foundation.mc.master_bank.domain.Account;
 import au.master.foundation.mc.master_bank.domain.Customer;
 import au.master.foundation.mc.master_bank.domain.enums.AccountType;
 import au.master.foundation.mc.master_bank.dto.AccountNewDTO;
+import au.master.foundation.mc.master_bank.dto.CustomerDTO;
 import au.master.foundation.mc.master_bank.dto.CustomerNewDTO;
 import au.master.foundation.mc.master_bank.repositories.CustomerRepository;
 import au.master.foundation.mc.master_bank.services.exceptions.ObjectNotFoundException;
@@ -63,8 +64,12 @@ public class CustomerService {
         return newAccount;
     }
 
-    public Customer fromDTO(CustomerNewDTO objDto){
+    public Customer fromNewDTO(CustomerNewDTO objDto){
         return new Customer(null, objDto.getFullName(), objDto.getEmail(), objDto.getPhone());
+    }
+
+    public CustomerDTO fromDTO(Customer obj){
+        return new CustomerDTO(obj);
     }
 
     public void updateData(Customer newObj, Customer obj){
