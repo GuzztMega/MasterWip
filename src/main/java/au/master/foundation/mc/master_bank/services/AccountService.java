@@ -34,9 +34,9 @@ public class AccountService {
     }
 
     public Account getAccount(Integer id){
-        Optional<Account> accounts = repo.findById(id);
-        Account account = accounts.get();
-        return account;
+        Optional<Account> account = repo.findById(id);
+        return account.orElseThrow(() -> new ObjectNotFoundException(
+                "Account Not Found! Id: " +id));
     }
 
     public Account update(Account obj) throws IllegalAccessException {
@@ -82,7 +82,7 @@ public class AccountService {
                 throw new NotEnoughFundsException("You don't have enough funds to make this transfer.");
             }
         } else{
-            throw new SameAccountsException("Account number can't be the same.");
+            throw new SameAccountsException("Accounts numbers can't be the same.");
         }
     }
 }

@@ -8,10 +8,8 @@ import au.master.foundation.mc.master_bank.dto.CustomerDTO;
 import au.master.foundation.mc.master_bank.dto.CustomerNewDTO;
 import au.master.foundation.mc.master_bank.repositories.CustomerRepository;
 import au.master.foundation.mc.master_bank.services.exceptions.ObjectNotFoundException;
-import org.apache.catalina.filters.ExpiresFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -35,8 +33,9 @@ public class CustomerService {
     }
 
     public Customer getCustomer(Integer id){
-        Optional<Customer> obj = repo.findById(id);
-        return obj.orElseThrow(() -> new ObjectNotFoundException("Customer doesn't exists"));
+        Optional<Customer> account = repo.findById(id);
+        return account.orElseThrow(() -> new ObjectNotFoundException(
+                "Customer Not Found! Id: " +id));
     }
 
     public Customer update(Customer obj){
@@ -65,7 +64,7 @@ public class CustomerService {
     }
 
     public Customer fromNewDTO(CustomerNewDTO objDto){
-        return new Customer(null, objDto.getFullName(), objDto.getEmail(), objDto.getPhone());
+        return new Customer(null, objDto.getFirstName(), objDto.getLastName(), objDto.getEmail());
     }
 
     public CustomerDTO fromDTO(Customer obj){
@@ -73,8 +72,8 @@ public class CustomerService {
     }
 
     public void updateData(Customer newObj, Customer obj){
-        newObj.setFullName(obj.getFullName());
-        newObj.setPhone(obj.getPhone());
+        newObj.setFirstName(obj.getfirstName());
+        newObj.setLastName(obj.getLastName());
         newObj.setEmail(obj.getEmail());
     }
 

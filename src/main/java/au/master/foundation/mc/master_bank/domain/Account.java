@@ -2,20 +2,13 @@ package au.master.foundation.mc.master_bank.domain;
 
 import au.master.foundation.mc.master_bank.domain.enums.AccountType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
-
-//@Inheritance(strategy = InheritanceType.JOINED)
-//@JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")
 @Entity
 public class Account {
-
-    //Scanner scan = new Scanner(System.in);
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

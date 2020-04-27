@@ -18,28 +18,11 @@ public class DBService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    @Autowired
-    private AccountRepository accountRepository;
-
     public void instantiateDataBase() throws ParseException {
 
-        Customer cust1 = new Customer(null, "Augusto Longo", "guzzdev2020@gmail.com", "9999-0123");
-        Customer cust2 = new Customer(null, "Johny Bravo", "jbravo@gmail.com", "9999-8765");
-//
-//        Account acc1 = new Account(null, "5800-5", 589.20, AccountType.CURRENT);
-//        Account acc2 = new Account(null, "8123-1", 49000.00, AccountType.SAVINGS);
-//
+        Customer cust1 = new Customer(null, "Augusto", "Longo", "augusto.longo@wipro.com");
+        Customer cust2 = new Customer(null, "Johny", "Bravo", "jbravo@gmail.com");
+
         customerRepository.saveAll(Arrays.asList(cust1, cust2));
-//        accountRepository.saveAll(Arrays.asList(acc1, acc2));
-//
-//
-//        CONSERTAR RELAÇÃO CLIENTE-CONTA
-//        cust1.getAccounts().addAll(Arrays.asList(acc1));
-//        cust2.getAccounts().addAll(Arrays.asList(acc1, acc2));
-//        acc1.getCustomers().addAll(Arrays.asList(cust1,cust2));
-//        acc2.getCustomers().addAll(Arrays.asList(cust2));
-
-
-
     }
 }

@@ -1,9 +1,5 @@
 package au.master.foundation.mc.master_bank.dto;
 
-import org.hibernate.validator.constraints.Length;
-
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import java.util.Random;
 
 public class AccountNewDTO {

@@ -4,8 +4,6 @@ import au.master.foundation.mc.master_bank.domain.Account;
 import au.master.foundation.mc.master_bank.domain.Transfer;
 import au.master.foundation.mc.master_bank.dto.AccountNewDTO;
 import au.master.foundation.mc.master_bank.services.AccountService;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

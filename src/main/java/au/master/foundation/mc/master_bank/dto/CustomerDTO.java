@@ -10,17 +10,24 @@ import java.util.List;
 public class CustomerDTO {
 
     private Integer id;
-    private String fullName;
+    private String firstName;
+    private String lastName;
     private String email;
-    private String phone;
 
     public CustomerDTO(){}
 
     public CustomerDTO(Customer obj) {
         this.id = obj.getId();
-        this.fullName = obj.getFullName();
+        this.firstName = obj.getfirstName();
+        this.lastName = obj.getLastName();
         this.email = obj.getEmail();
-        this.phone = obj.getPhone();
+    }
+
+    public CustomerDTO(Integer id, String firstName, String lastName, String email) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
     }
 
     public Integer getId() {
@@ -31,12 +38,20 @@ public class CustomerDTO {
         this.id = id;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -45,13 +60,5 @@ public class CustomerDTO {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 }
