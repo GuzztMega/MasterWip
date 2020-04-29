@@ -18,7 +18,7 @@ public class Account {
     private Integer type;
 
     @JsonIgnore
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
             name = "CUSTOMER_ACCOUNT",
             joinColumns = @JoinColumn(name = "account_number"),
