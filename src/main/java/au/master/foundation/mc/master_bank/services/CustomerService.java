@@ -33,8 +33,8 @@ public class CustomerService {
     }
 
     public Customer getCustomer(Integer id){
-        Optional<Customer> account = repo.findById(id);
-        return account.orElseThrow(() -> new ObjectNotFoundException(
+        Optional<Customer> customer = repo.findById(id);
+        return customer.orElseThrow(() -> new ObjectNotFoundException(
                 "Customer Not Found! Id: " +id));
     }
 
