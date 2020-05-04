@@ -11,7 +11,7 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.junit.runner.RunWith;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.Matchers.*;
@@ -51,9 +51,10 @@ public class CustomerServiceTest {
     public final void testGetCustomers(){
 
         Customer a = new Customer();
-        List<Customer> customers = new ArrayList<>();
-        customers.add(a);
-        
+
+        when(customerRepository.findAll()).thenReturn(Arrays.asList(a));
+        List<Customer> customers = customerService.getCustomers();
+
         assertThat(customers, hasItem(a));
     }
 
