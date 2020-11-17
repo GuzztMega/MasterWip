@@ -17,6 +17,9 @@ public class DBService {
 
     @Autowired
     private CustomerRepository customerRepository;
+    
+    @Autowired
+    private TestClass testClass;
 
     public void instantiateDataBase() throws ParseException {
 
@@ -24,5 +27,7 @@ public class DBService {
         Customer cust2 = new Customer(null, "Johny", "Bravo", "jbravo@gmail.com");
 
         customerRepository.saveAll(Arrays.asList(cust1, cust2));
+        
+        System.out.println(testClass.imprimir());
     }
 }
